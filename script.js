@@ -9,6 +9,7 @@
   	return name1;
   }
 
+
   fetch(`https://api.github.com/users/${getName(url)}`)
     .then(res=>res.json())
     .then(json=>{
@@ -26,13 +27,18 @@
          name.innerHTML = 'Данные отсутствуют';
           }
 
+          //console.log(userName.href=webSaitUser)
+
       document.querySelector('.infoProfile').innerHTML=`Информация о пользователе: `+(bio);
       if (bio != null) {
          } else {
          bio.innerHTML = 'Данные отсутствуют';
         }
-      let address=document.querySelector('.infoweb').innerHTML=html_url;
-      name.onclick=()=>window.location = address;
+
+      // let address=document.querySelector('.infoweb');
+      // address.innerHTML=html_url;
+      //console.log(address.onclick=()=> window.location= html_url);
+      //console.log(userName.href=);
 
       const img = new Image();
       img.src = photo;
