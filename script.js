@@ -27,18 +27,16 @@
          name.innerHTML = 'Данные отсутствуют';
           }
 
-          //console.log(userName.href=webSaitUser)
-
       document.querySelector('.infoProfile').innerHTML=`Информация о пользователе: `+(bio);
       if (bio != null) {
          } else {
          bio.innerHTML = 'Данные отсутствуют';
         }
 
-      // let address=document.querySelector('.infoweb');
-      // address.innerHTML=html_url;
-      //console.log(address.onclick=()=> window.location= html_url);
-      //console.log(userName.href=);
+      let address=document.querySelector('.infoweb');
+      address.innerHTML=html_url;
+      console.log(userName.onclick=()=> window.location.href= html_url);//не работает
+      console.log(userName.href=address);//не работает
 
       const img = new Image();
       img.src = photo;
