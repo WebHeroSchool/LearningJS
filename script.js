@@ -21,22 +21,21 @@
       const webSaitUser=html_url;
       console.log(photo,nameUser, infoUser, webSaitUser);
 
-      let userName=document.querySelector('.userName').innerHTML=`Пользователь: `+(name);
-      if (name != null) {
+      const userName=document.querySelector('.userName');
+      userName.className='active';
+      userName.innerHTML=`Пользователь: `+(name);
+      if (name) {
          } else {
          name.innerHTML = 'Данные отсутствуют';
           }
+      console.log(userName);
+      userName.href=html_url;
 
       document.querySelector('.infoProfile').innerHTML=`Информация о пользователе: `+(bio);
-      if (bio != null) {
+      if (bio) {
          } else {
          bio.innerHTML = 'Данные отсутствуют';
         }
-
-      let address=document.querySelector('.infoweb');
-      address.innerHTML=html_url;
-      console.log(userName.onclick=()=> window.location.href= html_url);//не работает
-      console.log(userName.href=address);//не работает
 
       const img = new Image();
       img.src = photo;
