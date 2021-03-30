@@ -14,19 +14,31 @@ const infoUser=fetch(`https://api.github.com/users/${getName(url)}`);
 const log=console.log;
 
 const getDate=new Promise((resolve, reject)=>{
-  setTimeout(()=>today?resolve(today):reject('День не определен'), 3000);
+  setTimeout(()=>today?resolve(today):reject('День не определен'), 7000);
+
 });
 
 const getInfoUser=new Promise((resolve, reject)=>{
-  setTimeout(()=>infoUser?resolve(infoUser):reject('Информация не найдена'), 3000);
+  setTimeout(()=>infoUser?resolve(infoUser):reject('Информация не найдена'), 2000);
 });
+
+getDate.then(
+    result => {
+			log(getInfoUser);
+		},
+		 error=> {
+			log('ошибка');
+		}
+	);
+
 
 Promise.all([getDate,getInfoUser])
   .then(([today, infoUser])=>infoUser)
-  .then(res=>res.json())
+	.then(res=>res.json())
 	.then(json=>log(json.bio))
-  .then(json=>log(today))
+	.then(json=>log(today))
 	.catch(err=>log(err));
+
 
   const plouderJs=document.querySelector('.loadingio-spinner-spinner-rzcxf7v29le');
 
