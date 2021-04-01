@@ -14,30 +14,51 @@ const infoUser=fetch(`https://api.github.com/users/${getName(url)}`);
 const log=console.log;
 
 const getDate=new Promise((resolve, reject)=>{
-  setTimeout(()=>today?resolve(today):reject('День не определен'), 7000);
-
+  setTimeout(()=>today?resolve(today):reject('День не определен'), 3000);
 });
 
 const getInfoUser=new Promise((resolve, reject)=>{
-  setTimeout(()=>infoUser?resolve(infoUser):reject('Информация не найдена'), 2000);
+  setTimeout(()=>infoUser?resolve(infoUser):reject('Информация не найдена'), 3000);
 });
 
-getDate.then(
-    result => {
-			log(getInfoUser);
-		},
-		 error=> {
-			log('ошибка');
-		}
-	);
+getInfoUser.then(
+	res=>{
+		body.append(today);
+		Promise.all([getDate,getInfoUser])
+	  .then(([today, infoUser])=>infoUser)
+		.then(res=>res.json())
+		.then(json=>{
+		    const photo = json.avatar_url;
+		    const nameUser=json.name;
+		    const infoUser=json.bio;
+		    const webSaitUser=json.html_url;
+		    log(photo,nameUser, infoUser, webSaitUser);
 
+		    const userName=document.querySelector('.userName');
+		    userName.className='active';
+		    userName.innerHTML=`Пользователь: `+(json.name);
+		    if (json.name) {
+		       } else {
+		       json.name.innerHTML = 'Данные отсутствуют';
+		        }
+		    log(userName);
+		    userName.href=json.html_url;
 
-Promise.all([getDate,getInfoUser])
-  .then(([today, infoUser])=>infoUser)
-	.then(res=>res.json())
-	.then(json=>log(json.bio))
-	.then(json=>log(today))
-	.catch(err=>log(err));
+		    document.querySelector('.infoProfile').innerHTML=`Информация о пользователе: `+(json.bio);
+		    if (json.bio) {
+		       } else {
+		       json.bio.innerHTML = 'Данные отсутствуют';
+		      }
+
+		    const img = new Image();
+		    img.src = photo;
+		    document.body.append(img);
+		    if (json.avatar_url) {
+		       } else {
+		       json.avatar_url.innerHTML = 'Данные отсутствуют';
+		      }
+		})
+	})
 
 
   const plouderJs=document.querySelector('.loadingio-spinner-spinner-rzcxf7v29le');
